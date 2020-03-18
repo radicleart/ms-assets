@@ -1,4 +1,4 @@
-package com.radicle.assets;
+package com.bidlogix.assets;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
