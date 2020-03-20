@@ -1,0 +1,32 @@
+application:
+   mongoIp: mongodb://localhost
+   mongoPort: 27017
+   mongoDbName: assets
+
+---
+
+spring:
+   profiles: test
+application:
+   mongoIp: mongodb://localhost
+
+---
+
+spring:
+    profiles: docker-dev
+application:
+   mongoIp: mongodb://localhost
+
+---
+
+spring:
+    profiles: staging
+application:
+   mongoIp: mongodb://mongodb
+
+---
+
+spring:
+    profiles: production
+application:
+   mongoIp: mongodb://mongodb
