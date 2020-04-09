@@ -1,4 +1,4 @@
-package com.bidlogix.assets.api;
+package com.radicle.assets.api;
 
 import java.security.Principal;
 import java.util.List;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +18,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bidlogix.assets.service.AssetService;
-import com.bidlogix.assets.service.domain.Asset;
-import com.bidlogix.assets.service.domain.AssetLifecycleEnum;
+import com.radicle.assets.service.AssetService;
+import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.AssetLifecycleEnum;
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:8080", "http://localhost:8081", "https://loopbomb.com", "https://test.loopbomb.com" }, maxAge = 6000)
 public class AssetController {
 
 	private static final Logger logger = LogManager.getLogger(AssetController.class);

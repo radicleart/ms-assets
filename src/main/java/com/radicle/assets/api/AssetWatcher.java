@@ -1,4 +1,4 @@
-package com.bidlogix.assets.api;
+package com.radicle.assets.api;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.bidlogix.assets.service.AssetService;
-import com.bidlogix.assets.service.domain.Asset;
-import com.bidlogix.assets.service.domain.AssetLifecycleEnum;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.radicle.assets.service.AssetService;
+import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.AssetLifecycleEnum;
 
 @Configuration
 @EnableAsync

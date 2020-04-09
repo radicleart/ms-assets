@@ -1,8 +1,8 @@
-package com.bidlogix.assets.service;
+package com.radicle.assets.service;
 
 import java.util.List;
 
-import com.bidlogix.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.Asset;
 
 public interface AssetService
 {

@@ -1,4 +1,4 @@
-package com.bidlogix.assets.service.domain;
+package com.radicle.assets.service.domain;
 
 import java.io.IOException;
 

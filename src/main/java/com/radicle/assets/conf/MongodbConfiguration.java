@@ -1,15 +1,15 @@
-package com.bidlogix.assets.conf;
+package com.radicle.assets.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.bidlogix.assets.ApplicationSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.radicle.assets.ApplicationSettings;
 
-@EnableMongoRepositories(basePackages = "com.bidlogix.assets")
+@EnableMongoRepositories(basePackages = "com.radicle.assets")
 
 @Configuration
 public class MongodbConfiguration extends AbstractMongoClientConfiguration {

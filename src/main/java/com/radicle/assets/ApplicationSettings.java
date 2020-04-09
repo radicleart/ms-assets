@@ -1,4 +1,4 @@
-package com.bidlogix.assets;
+package com.radicle.assets;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

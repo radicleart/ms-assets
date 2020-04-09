@@ -1,9 +1,7 @@
-package com.bidlogix.assets.service.domain;
+package com.radicle.assets.service.domain;
 
 import java.io.Serializable;
 import java.util.UUID;
-
-import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
@@ -19,16 +17,15 @@ import lombok.ToString;
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "Approval")
-public class Approval implements Serializable {
+@TypeAlias(value = "Purchase")
+public class Purchase implements Serializable {
 
-	private static final long serialVersionUID = -7979769575593551187L;
+	private static final long serialVersionUID = 3208986242997040844L;
 	@Id private String uuid;
-	private Long updated;
-	@Size(max = 200)
-	private String title;
+	private Long purchaseDate;
+	private Long amount;
 
-	public Approval() {
+	public Purchase() {
 		super();
 		this.uuid = UUID.randomUUID().toString();
 	}

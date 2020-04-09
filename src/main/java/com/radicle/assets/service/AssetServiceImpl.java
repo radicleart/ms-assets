@@ -1,4 +1,4 @@
-package com.bidlogix.assets.service;
+package com.radicle.assets.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.bidlogix.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.Asset;
 
 @Service
 public class AssetServiceImpl implements AssetService {

@@ -1,4 +1,4 @@
-package com.bidlogix.assets.service.domain;
+package com.radicle.assets.service.domain;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -19,20 +19,16 @@ import lombok.ToString;
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "Section")
-public class Section implements Serializable {
+@TypeAlias(value = "Approval")
+public class Approval implements Serializable {
 
-	private static final long serialVersionUID = 3208986242997040844L;
+	private static final long serialVersionUID = -7979769575593551187L;
 	@Id private String uuid;
 	private Long updated;
 	@Size(max = 200)
 	private String title;
-	@Size(max = 40000)
-	private String description;
-	@Size(max = 40000)
-	private String summary;
 
-	public Section() {
+	public Approval() {
 		super();
 		this.uuid = UUID.randomUUID().toString();
 	}

@@ -1,10 +1,7 @@
-package com.bidlogix.assets.service.domain;
+package com.radicle.assets.service.domain;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
-
-import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
@@ -28,15 +25,8 @@ public class Asset implements Serializable {
 	private Long updated;
 	private Integer status;
 	private String assetHash;
-	@Size(max = 200)
-	private String title;
-	@Size(max = 40000)
-	private String description;
-	@Size(max = 40000)
-	private String summary;
-	@Size(max = 100)
-	private String lotNumber;
-	private List<Section> sections;
+	private String prismicId;
+	
 
 	public Asset() {
 		super();

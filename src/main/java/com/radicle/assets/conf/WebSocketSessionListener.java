@@ -1,4 +1,4 @@
-package com.bidlogix.assets.conf;
+package com.radicle.assets.conf;
 
 import java.security.Principal;
 import java.util.ArrayList;
