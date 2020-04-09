@@ -1,6 +1,6 @@
 application:
    mongoIp: mongodb://localhost
-   mongoPort: 27017
+   mongoPort: 27019
    mongoDbName: assets
 
 ---
