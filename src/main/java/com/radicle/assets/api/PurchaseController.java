@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.radicle.assets.service.AssetService;
-import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.PurchaseOrder;
 
 @RestController
 @CrossOrigin(origins = {"http://physical.assets.local", "http://localhost:8080", "http://localhost:8081", "https://loopbomb.com", "https://test.loopbomb.com", "https://radicle.art", "https://tart.radiclesociety.org"}, maxAge = 6000)
@@ -24,8 +24,8 @@ public class PurchaseController {
 	}
 
 	@PostMapping(value = "/buy-now")
-	public Asset buyNow(HttpServletRequest request, @RequestBody Asset asset) {
-		asset = assetService.save(asset);
-		return asset;
+	public PurchaseOrder buyNow(HttpServletRequest request, @RequestBody PurchaseOrder purchaseOrder) {
+		purchaseOrder = assetService.save(purchaseOrder);
+		return purchaseOrder;
 	}
 }

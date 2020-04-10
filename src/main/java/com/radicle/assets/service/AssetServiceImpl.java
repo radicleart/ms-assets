@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.PurchaseOrder;
 
 @Service
 public class AssetServiceImpl implements AssetService {
@@ -61,5 +62,11 @@ public class AssetServiceImpl implements AssetService {
 	public List<Asset> findAssetsByStatus(Integer status) {
 		List<Asset> assets = assetRepository.findByStatus(status);
 		return assets;
+	}
+
+	@Override
+	public PurchaseOrder save(PurchaseOrder purchaseOrder) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

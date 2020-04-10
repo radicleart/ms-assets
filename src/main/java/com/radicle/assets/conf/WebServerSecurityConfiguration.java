@@ -1,7 +1,6 @@
 package com.radicle.assets.conf;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -10,21 +9,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author Josh Cummings
  */
 @EnableWebSecurity
-public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Value("${spring.security.oauth2.resourceserver.opaque.introspection-uri}") String introspectionUri;
 	@Value("${spring.security.oauth2.resourceserver.opaque.introspection-client-id}") String clientId;
 	@Value("${spring.security.oauth2.resourceserver.opaque.introspection-client-secret}") String clientSecret;
+    @Value("${radicle.security.enable-csrf}")
+    private boolean csrfEnabled;
 
-	@Override
+    @Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
+        // super.configure(http);
+
+        if(!csrfEnabled)
+        {
+          http.csrf().disable();
+        }
 		http
 			.authorizeRequests(authorizeRequests ->
 				authorizeRequests
-					.antMatchers(HttpMethod.OPTIONS, "/buy-now/**").permitAll()
-					.antMatchers(HttpMethod.GET, "/buy-now/**").permitAll()
-					.antMatchers(HttpMethod.POST, "/buy-now/**").hasAuthority("SCOPE_message:write")
+					//.antMatchers(HttpMethod.OPTIONS, "/buy-now/**").permitAll()
+					.antMatchers("/**").permitAll()
+					//.antMatchers(HttpMethod.POST, "/buy-now/**").hasAuthority("SCOPE_message:write")
 					.anyRequest().authenticated()
 			);
 //			.oauth2ResourceServer(oauth2ResourceServer ->

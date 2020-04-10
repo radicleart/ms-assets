@@ -1,7 +1,5 @@
 package com.radicle.assets.conf;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,11 +17,8 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 	private static final Logger logger = LogManager.getLogger(JWTHandlerInterceptor.class);
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String Identity_Address = "IdentityAddress";
-	private static final String ALLOWED_PATHS = "/lightning/alice/getInfo /api/exchange/rates /bitcoin/getRadPayConfig /bitcoin/getPaymentAddress /trading/taxonomy/fetch /trading/user/contactEmail";
-	private static final String ALLOWED_PATH_BTC = "/bitcoin/address";
-	private static final String ALLOWED_PATH_LND = "/bitcoin/invoice";
-	private static final String ALLOWED_PATH_INV = "/lightning";
-	@Value("${radicle.security.lsat.paths}") List<String> lsatPaths;
+	@Value("${radicle.security.lsat.paths}") String lsatPaths;
+	@Value("${radicle.security.lsat.lsat-server}") String lsatRedirect;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -31,12 +26,14 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 			logger.info("Handling: " + handler + " path: " + request.getRequestURI());
 			if (handler instanceof HandlerMethod) {
 				String path = request.getRequestURI();
-				if (!isProtected(path)) {
+				if (isProtected(path)) {
 					String address = request.getHeader(Identity_Address);
 					String authToken = request.getHeader(AUTHORIZATION);
-					authToken = authToken.split(" ")[1]; // stripe out Bearer string before passing along..
-				    response.sendRedirect("/login");
-					request.getSession().setAttribute("USERNAME", authToken);
+					if (authToken != null) {
+						authToken = authToken.split(" ")[1]; // stripe out Bearer string before passing along..
+						request.getSession().setAttribute("USERNAME", authToken);
+					}
+				    response.sendRedirect(lsatRedirect);
 				    return false;
 				} else {
 					logger.info("Authentication not required.");
@@ -54,11 +51,12 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 	}
 	
 	private boolean isProtected(String path) {
-		boolean protectd = path.startsWith("/bitcoin") || path.startsWith("/lightning") || path.startsWith("/trading");
-		if (ALLOWED_PATHS.indexOf(path) > -1) {
-			protectd = false;
-		} else if (path.startsWith(ALLOWED_PATH_BTC) || path.startsWith(ALLOWED_PATH_LND) || path.startsWith(ALLOWED_PATH_INV)) {
-			protectd = false;
+		boolean protectd = false;
+		String[] protectedPaths = lsatPaths.split(",");
+		for (String subpath : protectedPaths) {
+			if (path.indexOf(subpath) > -1) {
+				protectd = true;
+			}
 		}
 		return protectd;
 	}

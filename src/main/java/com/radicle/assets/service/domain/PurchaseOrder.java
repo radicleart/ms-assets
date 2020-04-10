@@ -17,15 +17,19 @@ import lombok.ToString;
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "Purchase")
-public class Purchase implements Serializable {
+@TypeAlias(value = "PurchaseOrder")
+public class PurchaseOrder implements Serializable {
 
 	private static final long serialVersionUID = 3208986242997040844L;
 	@Id private String uuid;
-	private Long purchaseDate;
-	private Long amount;
+	private String assetHash;
+	private String contentId;
+	private String purchaseDate;
+	private Float amount;
+	private String addressTo;
+	private String addressFrom;
 
-	public Purchase() {
+	public PurchaseOrder() {
 		super();
 		this.uuid = UUID.randomUUID().toString();
 	}

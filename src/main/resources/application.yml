@@ -10,6 +10,12 @@ spring:
           introspection-uri: http://login.assets.local/auth/realms/radiclesociety/protocol/openid-connect/token/introspect
           introspection-client-id: client
           introspection-client-secret: secret
+radicle:
+  security:
+    enable-csrf: false
+    lsat:
+      paths: buy-now,purchase
+      lsat-server: http://api.radicle.local/mesh/lsat
 application:
    mongoIp: mongodb://localhost
    mongoPort: 27017
