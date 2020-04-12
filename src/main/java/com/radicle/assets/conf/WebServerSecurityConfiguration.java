@@ -11,9 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Value("${spring.security.oauth2.resourceserver.opaque.introspection-uri}") String introspectionUri;
-	@Value("${spring.security.oauth2.resourceserver.opaque.introspection-client-id}") String clientId;
-	@Value("${spring.security.oauth2.resourceserver.opaque.introspection-client-secret}") String clientSecret;
     @Value("${radicle.security.enable-csrf}")
     private boolean csrfEnabled;
 

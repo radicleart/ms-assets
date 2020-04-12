@@ -1,21 +1,9 @@
-security:
-  oauth2:
-    resource:
-      token-info-uri: http://api.radicle.local/mesh/oauth2/introspect
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        opaque:
-          introspection-uri: http://login.assets.local/auth/realms/radiclesociety/protocol/openid-connect/token/introspect
-          introspection-client-id: client
-          introspection-client-secret: secret
 radicle:
   security:
     enable-csrf: false
-    lsat:
-      paths: buy-now,purchase
-      lsat-server: http://api.radicle.local/mesh/lsat
+  lsat:
+    paths: buy-now,purchase
+    lsat-server: http://api.radicle.local/lsat/v1/invoice
 application:
    mongoIp: mongodb://localhost
    mongoPort: 27017

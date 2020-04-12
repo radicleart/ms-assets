@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,13 +18,16 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 	private static final Logger logger = LogManager.getLogger(JWTHandlerInterceptor.class);
 	private static final String AUTHORIZATION = "Authorization";
 	private static final String Identity_Address = "IdentityAddress";
-	@Value("${radicle.security.lsat.paths}") String lsatPaths;
-	@Value("${radicle.security.lsat.lsat-server}") String lsatRedirect;
+	@Value("${radicle.lsat.paths}") String lsatPaths;
+	@Value("${radicle.lsat.lsat-server}") String lsatRedirect;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		try {
-			logger.info("Handling: " + handler + " path: " + request.getRequestURI());
+            logger.info("Handling: " + handler + " path: " + request.getRequestURI());
+            logger.info("remote host: " + request.getRemoteHost());
+            logger.info("request url: " + request.getRequestURL());
+            logger.info("Method: " + request.getMethod());
 			if (handler instanceof HandlerMethod) {
 				String path = request.getRequestURI();
 				if (isProtected(path)) {
@@ -33,7 +37,10 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 						authToken = authToken.split(" ")[1]; // stripe out Bearer string before passing along..
 						request.getSession().setAttribute("USERNAME", authToken);
 					}
-				    response.sendRedirect(lsatRedirect);
+				    response.setStatus(HttpStatus.TEMPORARY_REDIRECT.value());
+		            response.setHeader("Location", response.encodeRedirectURL(lsatRedirect));
+		            response.setHeader("Content-Type", "application/json");
+				    //response.sendRedirect(response.encodeRedirectURL(lsatRedirect));
 				    return false;
 				} else {
 					logger.info("Authentication not required.");

@@ -26,6 +26,7 @@ public class PurchaseOrder implements Serializable {
 	private String contentId;
 	private String purchaseDate;
 	private Float amount;
+	private Float amountBtc;
 	private String addressTo;
 	private String addressFrom;
 
@@ -33,4 +34,5 @@ public class PurchaseOrder implements Serializable {
 		super();
 		this.uuid = UUID.randomUUID().toString();
 	}
+
 } 
