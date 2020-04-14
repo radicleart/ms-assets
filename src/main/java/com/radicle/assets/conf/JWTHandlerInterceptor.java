@@ -40,6 +40,7 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 				    response.setStatus(HttpStatus.TEMPORARY_REDIRECT.value());
 		            response.setHeader("Location", response.encodeRedirectURL(lsatRedirect));
 		            response.setHeader("Content-Type", "application/json");
+		            response.setHeader("Access-Control-Allow-Origin", "*");
 				    //response.sendRedirect(response.encodeRedirectURL(lsatRedirect));
 				    return false;
 				} else {

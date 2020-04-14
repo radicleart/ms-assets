@@ -32,9 +32,4 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer  {
 //        registry.enableStompBrokerRelay("/topic", "/queue").setRelayHost("rabbit1").setSystemLogin("mijobc").setSystemPasscode("b1dl0g1x");        
 //        registry.setApplicationDestinationPrefixes("/app");
     }
-
-//    public void registerStompEndpoints(StompEndpointRegistry registry) {
-//        registry.addEndpoint("/generate").setAllowedOrigins("*").withSockJS();
-//        registry.addEndpoint("/exchanges").setAllowedOrigins("*").withSockJS();
-//    }
 }
