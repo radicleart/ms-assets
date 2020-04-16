@@ -13,7 +13,7 @@ import com.radicle.assets.service.AssetService;
 import com.radicle.assets.service.domain.PurchaseOrder;
 
 @RestController
-@CrossOrigin(origins = {"http://physical.assets.local", "http://localhost:8080", "http://localhost:8081", "https://loopbomb.com", "https://test.loopbomb.com", "https://radicle.art", "https://tart.radiclesociety.org"}, maxAge = 6000)
+@CrossOrigin(origins = { "*" }, maxAge = 6000)
 public class PurchaseController {
 
 	@Autowired private AssetService assetService;
