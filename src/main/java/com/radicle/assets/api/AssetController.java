@@ -37,6 +37,17 @@ public class AssetController {
 		return principal.getName();
 	}
 
+	@GetMapping(value = "/buy-now")
+	public String initBuyNow(HttpServletRequest request) {
+		return "okay";
+	}
+
+	@PostMapping(value = "/buy-now")
+	public Asset buyNow(HttpServletRequest request, @RequestBody Asset purchaseOrder) {
+		purchaseOrder = assetService.save(purchaseOrder);
+		return purchaseOrder;
+	}
+
 	@PostMapping(value = "/asset")
 	public Asset save(HttpServletRequest request, @RequestBody Asset asset) {
 		asset = assetService.save(asset);
