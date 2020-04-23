@@ -24,11 +24,11 @@ public class AssetServiceImpl implements AssetService {
 	}
 
 	@Override
-	public Asset findByAssetHash(String assetHash) {
-		if (assetHash == null) {
+	public Asset findByAssetHash(String productId) {
+		if (productId == null) {
 			return null;
 		}
-		List<Asset> pms = assetRepository.findByAssetHash(assetHash);
+		List<Asset> pms = assetRepository.findByProductId(productId);
 		Asset asset = null;
 		if (pms.size() > 0) {
 			asset = pms.get(0);

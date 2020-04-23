@@ -10,6 +10,6 @@ import com.radicle.assets.service.domain.Asset;
 @Repository
 public interface AssetRepository extends MongoRepository<Asset, String> {
 
-    public List<Asset> findByAssetHash(String assetHash);
+    public List<Asset> findByProductId(String productId);
     public List<Asset> findByStatus(Integer status);
 }

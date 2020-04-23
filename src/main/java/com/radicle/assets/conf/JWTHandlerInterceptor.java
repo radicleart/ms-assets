@@ -5,12 +5,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestOperations;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.handler.AbstractHandlerMapping;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Component
 public class JWTHandlerInterceptor implements HandlerInterceptor {
@@ -20,28 +29,26 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 	private static final String Identity_Address = "IdentityAddress";
 	@Value("${radicle.lsat.paths}") String lsatPaths;
 	@Value("${radicle.lsat.lsat-server}") String lsatRedirect;
+	@Value("${radicle.lsat.lsat-verify}") String lsatVerify;
+	@Autowired private RestOperations restTemplate;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		try {
-            logger.info("Handling: " + handler + " path: " + request.getRequestURI());
-            logger.info("remote host: " + request.getRemoteHost());
-            logger.info("request url: " + request.getRequestURL());
-            logger.info("Method: " + request.getMethod());
 			if (handler instanceof HandlerMethod) {
 				String path = request.getRequestURI();
 				if (isProtected(path)) {
-					String address = request.getHeader(Identity_Address);
 					String authToken = request.getHeader(AUTHORIZATION);
 					if (authToken != null) {
-						authToken = authToken.split(" ")[1]; // stripe out Bearer string before passing along..
-						request.getSession().setAttribute("USERNAME", authToken);
+						Boolean allow = verify(authToken);
+						if (allow) {
+						    return true;
+						}
 					}
 				    response.setStatus(HttpStatus.TEMPORARY_REDIRECT.value());
 		            response.setHeader("Location", response.encodeRedirectURL(lsatRedirect));
 		            response.setHeader("Content-Type", "application/json");
 		            response.setHeader("Access-Control-Allow-Origin", "*");
-				    //response.sendRedirect(response.encodeRedirectURL(lsatRedirect));
 				    return false;
 				} else {
 					logger.info("Authentication not required.");
@@ -68,4 +75,26 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 		}
 		return protectd;
 	}
+
+	private Boolean verify(String auth) throws JsonProcessingException {
+		HttpHeaders headers = getHeaders(auth);
+	    HttpEntity<String> requestEntity = new HttpEntity<String>(headers);
+		ResponseEntity<?> response = null;
+		try {
+			response = restTemplate.exchange(lsatVerify, HttpMethod.GET, requestEntity, Boolean.class);
+		} catch (RestClientException e) {
+			logger.error("Unable to verify token.." + e.getMessage());
+		}
+		if (response != null && response.getStatusCode() != null) {
+			return response.getStatusCode() == HttpStatus.OK;
+		}
+		return false;
+	}
+	
+	private HttpHeaders getHeaders(String auth) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("Authorization", auth);
+		return headers;
+	}
+
 }

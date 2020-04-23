@@ -23,14 +23,13 @@ public class Asset implements Serializable {
 	private static final long serialVersionUID = -8594314205145970L;
 	@Id private String uuid;
 	private Long updated;
-	private String assetHash;
+	private String memo;
 	private String productId;
 	private int status;
 	private String purchaseDate;
-	private Float amount;
+	private String tuid;
+	private Long amountSat;
 	private Float amountBtc;
-	private String addressTo;
-	private String addressFrom;
 
 	public Asset() {
 		super();
