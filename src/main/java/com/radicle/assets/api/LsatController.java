@@ -25,9 +25,9 @@ import com.radicle.assets.service.domain.AssetLifecycleEnum;
 
 @RestController
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
-public class AssetController {
+public class LsatController {
 
-	private static final Logger logger = LogManager.getLogger(AssetController.class);
+	private static final Logger logger = LogManager.getLogger(LsatController.class);
 	@Autowired private AssetService assetService;
 
 	@MessageMapping("/mynews")

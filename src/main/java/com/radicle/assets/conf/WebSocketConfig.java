@@ -1,5 +1,8 @@
 package com.radicle.assets.conf;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +26,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer  {
 
     public void configureMessageBroker(MessageBrokerRegistry config) {
 		logger.info("====================================================================================");
-		logger.info("starting spring application " + this.getClass().getName());
+		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+		Date date = new Date(System.currentTimeMillis());
+		logger.info("starting spring application " + formatter.format(date));
 		logger.info("====================================================================================");
 
 		config.enableSimpleBroker("/topic", "/queue/");   // Enables a simple in-memory broker

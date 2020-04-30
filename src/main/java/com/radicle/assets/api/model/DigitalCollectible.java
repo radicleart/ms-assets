@@ -1,6 +1,7 @@
 package com.radicle.assets.api.model;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
@@ -17,15 +18,18 @@ import lombok.ToString;
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "DigitalResource")
-public class DigitalResource implements Serializable {
+@TypeAlias(value = "DigitalCollectible")
+public class DigitalCollectible implements Serializable {
 
 	private static final long serialVersionUID = -3400559415907788678L;
 	@Id private String uuid;
 	private Long updated;
-	private String resourceId;
+	private String name;
+	private String description;
+	private String image;
+	private Map<String, String> attributes;
 
-	public DigitalResource() {
+	public DigitalCollectible() {
 		super();
 		this.uuid = UUID.randomUUID().toString();
 	}
