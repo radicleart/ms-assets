@@ -1,17 +1,21 @@
 package com.radicle.assets.api;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.radicle.assets.api.model.DigitalCollectible;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.radicle.assets.api.model.DigitalCollectible;
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 public class DigitalCollectibleController {
+
+	@GetMapping(value = "/api/server/time")
+	public Long servertime() {
+		return System.currentTimeMillis();
+	}
 
 	@GetMapping(value = "/api/loop/{tokenId}")
 	public DigitalCollectible fetchLoop(HttpServletRequest request, @PathVariable String tokenId) {

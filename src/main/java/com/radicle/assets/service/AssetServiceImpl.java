@@ -1,12 +1,11 @@
 package com.radicle.assets.service;
 
-import java.util.Date;
-import java.util.List;
-
+import com.radicle.assets.service.domain.Asset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.radicle.assets.service.domain.Asset;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class AssetServiceImpl implements AssetService {
@@ -20,11 +19,11 @@ public class AssetServiceImpl implements AssetService {
 	}
 
 	@Override
-	public Asset findByAssetId(String assetId) {
-		if (assetId == null) {
+	public Asset findByPaymentId(String paymentId) {
+		if (paymentId == null) {
 			return null;
 		}
-		Asset asset = assetRepository.findByAssetId(assetId);
+		Asset asset = assetRepository.findByPaymentId(paymentId);
 		return asset;
 	}
 

@@ -1,10 +1,6 @@
 package com.radicle.assets.api.model;
 
-import java.io.Serializable;
-
-public class UserInvoiceModel implements Serializable {
-
-	private static final long serialVersionUID = -6076158540399552737L;
+public class UserInvoiceModel {
 
 	private Long amount;
 	private String memo;

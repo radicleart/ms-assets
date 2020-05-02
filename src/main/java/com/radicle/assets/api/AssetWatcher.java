@@ -1,7 +1,9 @@
 package com.radicle.assets.api;
 
-import java.util.List;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.radicle.assets.service.AssetService;
+import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.service.domain.AssetLifecycleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -9,10 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.radicle.assets.service.AssetService;
-import com.radicle.assets.service.domain.Asset;
-import com.radicle.assets.service.domain.AssetLifecycleEnum;
+import java.util.List;
 
 @Configuration
 @EnableAsync

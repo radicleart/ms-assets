@@ -17,7 +17,6 @@ public class ApplicationSettings {
 	public ApplicationSettings() {
 	}
 
-
 	public String getMongoIp() {
 		return mongoIp;
 //		if (activeProfile.equals("staging") || activeProfile.equals("production")) {
@@ -39,24 +38,19 @@ public class ApplicationSettings {
 		this.activeProfile = activeProfile;
 	}
 
-
 	public String getMongoDbName() {
 		return mongoDbName;
 	}
-
 
 	public void setMongoDbName(String mongoDbName) {
 		this.mongoDbName = mongoDbName;
 	}
 
-
 	public String getMongoPort() {
 		return mongoPort;
 	}
 
-
 	public void setMongoPort(String mongoPort) {
 		this.mongoPort = mongoPort;
 	}
-
 }

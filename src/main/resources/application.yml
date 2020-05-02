@@ -4,6 +4,8 @@ radicle:
   lsat:
     paths: buy-now,purchase
     lsat-server: http://api.radicle.local/lsat/v1/invoice
+    invoice-server: http://docker.for.mac.localhost/lsat/v1/new-invoice
+    address-server: http://docker.for.mac.localhost/lsat/v1/bitcoin-address
     lsat-verify: http://docker.for.mac.localhost/lsat/v1/verify
   mongo:
     user: radicle
@@ -24,6 +26,12 @@ application:
 spring:
     profiles: docker-dev
 application:
+radicle:
+  lsat:
+    lsat-server: https://api.radicle.vote/lsat/v1/invoice
+    lsat-verify: https://api.radicle.vote/lsat/v1/verify
+    invoice-server: http://api.radicle.vote/lsat/v1/new-invoice
+    address-server: http://api.radicle.vote/lsat/v1/bitcoin-address
 
 ---
 
@@ -40,4 +48,6 @@ radicle:
   lsat:
     lsat-server: https://api.radicle.vote/lsat/v1/invoice
     lsat-verify: https://api.radicle.vote/lsat/v1/verify
+    invoice-server: http://api.radicle.vote/lsat/v1/new-invoice
+    address-server: http://api.radicle.vote/lsat/v1/bitcoin-address
    

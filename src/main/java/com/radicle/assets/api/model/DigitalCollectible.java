@@ -1,17 +1,12 @@
 package com.radicle.assets.api.model;
 
-import java.io.Serializable;
-import java.util.Map;
-import java.util.UUID;
-
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.io.Serializable;
+import java.util.Map;
+import java.util.UUID;
 
 @Getter
 @Setter
