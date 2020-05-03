@@ -2,8 +2,8 @@ package com.radicle.assets.service.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-@JsonSerialize(using = AssetLifecycleEnumSerializer.class)
-public enum AssetLifecycleEnum
+@JsonSerialize(using = PaymentLifecycleEnumSerializer.class)
+public enum PaymentLifecycleEnum
 {
 	NEW(-1, "PurchaseOrder pending." ),
 	EXPIRED(-3, "Payment expired." ),
@@ -18,7 +18,7 @@ public enum AssetLifecycleEnum
 	private int status;
 	private String description;
 	
-	private AssetLifecycleEnum(int status, String description)
+	private PaymentLifecycleEnum(int status, String description)
 	{
 		this.status = status;
 		this.description = description;

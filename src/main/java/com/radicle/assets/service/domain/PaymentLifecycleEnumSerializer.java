@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
 
-public class AssetLifecycleEnumSerializer extends JsonSerializer<AssetLifecycleEnum> {
+public class PaymentLifecycleEnumSerializer extends JsonSerializer<PaymentLifecycleEnum> {
 
 	@Override
-	public void serialize(AssetLifecycleEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
+	public void serialize(PaymentLifecycleEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException, JsonProcessingException {
 		generator.writeStartObject();
 		generator.writeFieldName("status");
 		generator.writeNumber(value.getStatus());

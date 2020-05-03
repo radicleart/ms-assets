@@ -1,10 +1,16 @@
 package com.radicle.assets.service;
 
-import com.radicle.assets.service.domain.Asset;
+import java.util.List;
 
-public interface PaymentService {
+import com.radicle.assets.service.domain.Payment;
 
-	String getPaymentAddress(String paymentId);
-	Asset getInvoice(Asset payment);
 
+public interface PaymentService
+{
+	public String getPaymentAddress(String paymentId);
+	public Payment getInvoice(Payment payment);
+
+	public Payment save(Payment payment);
+	public List<Payment> findPaymentsByStatus(Integer status);
+	public Payment findByPaymentId(String paymentId);
 }

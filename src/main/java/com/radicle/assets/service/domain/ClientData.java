@@ -1,17 +1,22 @@
 package com.radicle.assets.service.domain;
 
-import lombok.*;
-import org.springframework.data.annotation.TypeAlias;
-
 import java.io.Serializable;
 import java.util.List;
+
+import org.springframework.data.annotation.TypeAlias;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "Asset")
+@TypeAlias(value = "ClientData")
 public class ClientData implements Serializable {
 	private static final long serialVersionUID = -5834939072933725987L;
 	private List<String> assets;

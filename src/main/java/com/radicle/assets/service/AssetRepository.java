@@ -1,16 +1,17 @@
 package com.radicle.assets.service;
 
-import com.radicle.assets.service.domain.Asset;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.radicle.assets.service.domain.Asset;
 
 
 @Repository
 public interface AssetRepository extends MongoRepository<Asset, String> {
 
-    public List<Asset> findByStatus(Integer status);
-    public Asset findByPaymentId(String paymentId);
-    public Asset findByAssetHash(String assetHash);
+    public List<Asset> findByOwner(String owner);
+    public Optional<Asset> findByAssetHash(String assethash);
 }
