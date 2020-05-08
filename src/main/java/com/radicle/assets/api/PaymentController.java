@@ -73,7 +73,7 @@ public class PaymentController {
 		if (payment == null) {
 			throw new RuntimeException("Payment not found");
 		}
-		payment.getClientData().addAssets(payment1.getClientData().getAssets());
+		payment.addAssets(payment1.getClientData().getAssets());
 		payment = paymentService.save(payment);
 		return payment;
 	}

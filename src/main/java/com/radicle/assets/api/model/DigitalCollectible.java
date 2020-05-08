@@ -1,31 +1,42 @@
 package com.radicle.assets.api.model;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.TypeAlias;
+import com.radicle.assets.service.domain.Asset;
 
-import java.io.Serializable;
-import java.util.Map;
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "DigitalCollectible")
-public class DigitalCollectible implements Serializable {
+public class DigitalCollectible {
 
-	private static final long serialVersionUID = -3400559415907788678L;
-	@Id private String uuid;
-	private Long updated;
 	private String name;
 	private String description;
 	private String image;
-	private Map<String, String> attributes;
+	private String background_color;
+	private String animation_url;
+	private String image_data;
+	private String external_url;
+	private String youtube_url;
 
 	public DigitalCollectible() {
 		super();
-		this.uuid = UUID.randomUUID().toString();
+	}
+	public static DigitalCollectible fromAsset(Asset asset) {
+		DigitalCollectible dc = new DigitalCollectible();
+		dc.setAnimation_url(asset.getAnimationUrl());
+		dc.setBackground_color(asset.getBackgroundColor());
+		dc.setDescription(asset.getDescription());
+		dc.setExternal_url(asset.getExternalUrl());
+		dc.setImage(asset.getImageUrl());
+		dc.setImage_data(asset.getImageData());
+		dc.setName(asset.getName());
+		dc.setYoutube_url(asset.getYoutubeUrl());
+		return dc;
 	}
 }

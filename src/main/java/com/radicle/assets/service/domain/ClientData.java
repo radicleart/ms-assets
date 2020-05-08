@@ -1,6 +1,7 @@
 package com.radicle.assets.service.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.TypeAlias;
@@ -26,6 +27,9 @@ public class ClientData implements Serializable {
 	}
 
 	public boolean addAssets(List<String> assetHashes) {
+		if (assets == null) {
+			assets = new ArrayList<String>();
+		}
 		return this.assets.addAll(assetHashes);
 	}
 }

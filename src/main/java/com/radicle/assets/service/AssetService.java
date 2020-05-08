@@ -11,4 +11,5 @@ public interface AssetService
 	public Asset save(Asset payment);
     public List<Asset> findByOwner(String owner);
     public Optional<Asset> findByAssetHash(String assethash);
+	public Optional<Asset> findByTokenId(Long tokenId);
 }

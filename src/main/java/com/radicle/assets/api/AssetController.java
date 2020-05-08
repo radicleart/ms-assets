@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.radicle.assets.api.model.DigitalCollectible;
 import com.radicle.assets.service.AssetService;
 import com.radicle.assets.service.domain.Asset;
 
@@ -21,6 +24,7 @@ import com.radicle.assets.service.domain.Asset;
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 public class AssetController {
 
+    private static final Logger logger = LogManager.getLogger(AssetController.class);
 	@Autowired private AssetService assetService;
 
 	@GetMapping(value = "/api/server/time")
@@ -28,17 +32,31 @@ public class AssetController {
 		return System.currentTimeMillis();
 	}
 
-	@GetMapping(value = "/api/loop/{assethash}")
-	public Asset fetchLoop(HttpServletRequest request, @PathVariable String assethash) {
-		Optional<Asset> dc = assetService.findByAssetHash(assethash);
-		if (dc.isPresent()) {
-			return dc.get();
+//	@GetMapping(value = "/api/loop/{assethash}")
+//	public Asset fetchLoop(HttpServletRequest request, @PathVariable String assethash) {
+//		Optional<Asset> dc = assetService.findByAssetHash(assethash);
+//		if (dc.isPresent()) {
+//			return dc.get();
+//		} else {
+//			Asset a = new Asset();
+//			a.setName("Aluminium - Bauxite ");
+//			a.setDescription(assethash + ": Silicate of aluminium contains at least one slicon oxide group.");
+//			a.setImage(
+//					"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSVU2uNXGH4NJxFJJUu1zk5jQz_vLfGW6ysebpAiOjyErIYhick&usqp=CAU");
+//			return a;
+//		}
+//	}
+
+	@GetMapping(value = "/api/loop/{tokenId}")
+	public DigitalCollectible fetchLoop(HttpServletRequest request, @PathVariable Long tokenId) {
+		logger.info("Asset requested: " + tokenId);
+		Optional<Asset> asset = assetService.findByTokenId(tokenId);
+		if (asset.isEmpty()) {
+			return null;
 		} else {
-			Asset a = new Asset();
-			a.setName("Aluminium - Bauxite ");
-			a.setDescription(assethash + ": Silicate of aluminium contains at least one slicon oxide group.");
-			a.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSVU2uNXGH4NJxFJJUu1zk5jQz_vLfGW6ysebpAiOjyErIYhick&usqp=CAU");
-			return a;
+			Asset asset1 = asset.get();
+			DigitalCollectible dc = DigitalCollectible.fromAsset(asset.get());
+			return dc;
 		}
 	}
 
@@ -47,6 +65,12 @@ public class AssetController {
 		asset = assetService.save(asset);
 		return asset;
 	}
+
+//	@PostMapping(value = "/asset/mint/{assetHash}")
+//	public Asset update(HttpServletRequest request, @PathVariable TransactionData transactionData) {
+//		Asset asset = assetService.saveTransaction(transactionData);
+//		return asset;
+//	}
 
 	@PutMapping(value = "/asset")
 	public Asset update(HttpServletRequest request, @RequestBody Asset asset) {

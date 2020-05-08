@@ -1,5 +1,7 @@
 package com.radicle.assets.service.domain;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 
@@ -17,7 +19,7 @@ import lombok.ToString;
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "Asset")
+@TypeAlias(value = "Payment")
 public class Payment {
 
 	public static final String BTC_METHOD = "bitcoin";
@@ -64,6 +66,14 @@ public class Payment {
 		}
 		return false;
 	}
+	
+	public boolean addAssets(List<String> assetHashes) {
+		if (this.clientData == null) {
+			this.clientData = new ClientData();
+		}
+		return this.clientData.addAssets(assetHashes);
+	}
+
 	
 	public boolean isBitcoinMethod() {
 		return this.method != null && this.method.equals(BTC_METHOD);
