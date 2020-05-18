@@ -8,6 +8,7 @@ import com.radicle.assets.service.domain.Asset;
 
 public interface AssetService
 {
+	public String getPaymentAddress(String paymentId);
 	public Asset save(Asset payment);
     public List<Asset> findByOwner(String owner);
     public Optional<Asset> findByAssetHash(String assethash);

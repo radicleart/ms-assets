@@ -4,10 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestOperations;
 
 import com.radicle.assets.service.domain.Asset;
 
@@ -16,6 +22,18 @@ public class AssetServiceImpl implements AssetService {
 
 	@Autowired private AssetRepository assetRepository;
 	@Autowired private MongoTemplate mongoTemplate;
+	@Autowired private RestOperations restTemplate;
+	@Value("${radicle.lsat.address-server}") String addressServer;
+
+	@Override
+	public String getPaymentAddress(String paymentId) {
+		HttpHeaders headers = new HttpHeaders();
+	    HttpEntity<String> requestEntity = new HttpEntity<String>(headers);
+		ResponseEntity<String> response = null;
+		String url = addressServer + "/" + paymentId;
+		response = restTemplate.exchange(url, HttpMethod.GET, requestEntity, String.class);
+		return response.getBody();
+	}
 
 	@Override
 	public Asset save(Asset assetFromJson) {

@@ -3,8 +3,7 @@ radicle:
     enable-csrf: false
   lsat:
     paths: buy-now,purchase
-    lsat-server: http://api.radicle.local/lsat/v1/invoice
-    invoice-server: http://docker.for.mac.localhost/lsat/v1/new-invoice
+    lsat-server: http://api.risidio.local/lsat/v1/invoice
     address-server: http://docker.for.mac.localhost/lsat/v1/bitcoin-address
     lsat-verify: http://docker.for.mac.localhost/lsat/v1/verify
   mongo:
@@ -28,10 +27,9 @@ spring:
 application:
 radicle:
   lsat:
-    lsat-server: https://api.radicle.vote/lsat/v1/invoice
-    lsat-verify: https://api.radicle.vote/lsat/v1/verify
-    invoice-server: http://api.radicle.vote/lsat/v1/new-invoice
-    address-server: http://api.radicle.vote/lsat/v1/bitcoin-address
+    lsat-server: https://api.risidio.com/lsat/v1/invoice
+    lsat-verify: https://api.risidio.com/lsat/v1/verify
+    address-server: http://api.risidio.com/lsat/v1/bitcoin-address
 
 ---
 
@@ -46,8 +44,7 @@ spring:
 application:
 radicle:
   lsat:
-    lsat-server: https://api.radicle.vote/lsat/v1/invoice
-    lsat-verify: https://api.radicle.vote/lsat/v1/verify
-    invoice-server: http://api.radicle.vote/lsat/v1/new-invoice
-    address-server: http://api.radicle.vote/lsat/v1/bitcoin-address
+    lsat-server: https://api.risidio.com/lsat/v1/invoice
+    lsat-verify: https://api.risidio.com/lsat/v1/verify
+    address-server: http://api.risidio.com/lsat/v1/bitcoin-address
    

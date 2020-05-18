@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.radicle.assets.service.PaymentService;
-import com.radicle.assets.service.domain.Payment;
+import com.radicle.assets.service.AssetService;
+import com.radicle.assets.service.domain.Asset;
 
 @RestController
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
-public class LsatController {
+public class BuyNowController {
 
-	private static final Logger logger = LogManager.getLogger(LsatController.class);
-	@Autowired private PaymentService assetService;
+	private static final Logger logger = LogManager.getLogger(BuyNowController.class);
+	@Autowired private AssetService assetService;
 
 	@MessageMapping("/mynews")
 	@SendTo("/topic/news")
@@ -35,12 +35,18 @@ public class LsatController {
 
 	@GetMapping(value = "/buy-now")
 	public String initBuyNow(HttpServletRequest request) {
+		// access granted - return valuable resource
 		return "okay";
 	}
 
+	/**
+	 * Called from fe-lsat to initiate payment 402 flow..
+	 * @param request
+	 * @param purchaseOrder - simulates a real purchase order
+	 * @return
+	 */
 	@PostMapping(value = "/buy-now")
-	public Payment buyNow(HttpServletRequest request, @RequestBody Payment purchaseOrder) {
-		purchaseOrder = assetService.save(purchaseOrder);
+	public Asset buyNow(HttpServletRequest request, @RequestBody Asset purchaseOrder) {
 		return purchaseOrder;
 	}
 }
