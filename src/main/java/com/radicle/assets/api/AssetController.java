@@ -39,7 +39,18 @@ public class AssetController {
 		if (asset.isEmpty()) {
 			return null;
 		} else {
-			Asset asset1 = asset.get();
+			DigitalCollectible dc = DigitalCollectible.fromAsset(asset.get());
+			return dc;
+		}
+	}
+
+	@GetMapping(value = "/api/v1/loop/{tokenId}")
+	public DigitalCollectible fetchV1Loop(HttpServletRequest request, @PathVariable Long tokenId) {
+		logger.info("Asset requested: " + tokenId);
+		Optional<Asset> asset = assetService.findByTokenId(tokenId);
+		if (asset.isEmpty()) {
+			return null;
+		} else {
 			DigitalCollectible dc = DigitalCollectible.fromAsset(asset.get());
 			return dc;
 		}
