@@ -11,10 +11,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 public class MongodbConfiguration extends AbstractMongoClientConfiguration {
 
-    @Value("${radicle.mongo.user}")
-    String user;
-    @Value("${radicle.mongo.password}")
-    String password;
     @Value("${radicle.mongo.mongoIp}")
     String mongoIp;
     @Value("${radicle.mongo.mongoPort}")

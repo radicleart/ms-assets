@@ -7,8 +7,6 @@ radicle:
     address-server: http://docker.for.mac.localhost/lsat/v1/bitcoin-address
     lsat-verify: http://docker.for.mac.localhost/lsat/v1/verify
   mongo:
-    user: radicle
-    password: rad1cle
     mongoIp: mongodb://mongodb
     mongoPort: 27017
     mongoDbName: assets
