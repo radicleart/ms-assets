@@ -41,6 +41,7 @@ public class AssetServiceImpl implements AssetService {
 		Asset asset;
 		if (assetFromDb.isPresent()) {
 			asset = assetFromDb.get();
+			asset.setNetwork(assetFromJson.getNetwork());
 			asset.setTxId(assetFromJson.getTxId());
 			asset.setTokenId(assetFromJson.getTokenId());
 		} else {
@@ -58,6 +59,12 @@ public class AssetServiceImpl implements AssetService {
 	@Override
 	public Optional<Asset> findByAssetHash(String assethash) {
 		Optional<Asset> asset = assetRepository.findByAssetHash(assethash);
+		return asset;
+	}
+
+	@Override
+	public Optional<Asset> findByTokenIdAndNetwork(Long tokenId, Integer network) {
+		Optional<Asset> asset = assetRepository.findByTokenIdAndNetwork(tokenId, network);
 		return asset;
 	}
 
@@ -85,6 +92,18 @@ public class AssetServiceImpl implements AssetService {
 			}
 		}
 		return tokenId;
+	}
+
+	@Override
+	public void updateNetwork() {
+		Query q = new Query().with(Sort.by(Sort.Direction.DESC, "tokenId")).limit(1000);
+		List<Asset> aList = mongoTemplate.find(q, Asset.class);
+		for (Asset asset : aList) {
+			if (asset.getNetwork() == null) {
+				asset.setNetwork(4);
+			}
+			assetRepository.save(asset);
+		}
 	}
 
 

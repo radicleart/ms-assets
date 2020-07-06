@@ -44,6 +44,7 @@ public class Asset {
 	private String imageData;
 	private String externalUrl;
 	private String youtubeUrl;
+	private Integer network;
 
 	public Asset() {
 		super();

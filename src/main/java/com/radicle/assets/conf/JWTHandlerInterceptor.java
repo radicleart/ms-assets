@@ -1,11 +1,17 @@
 package com.radicle.assets.conf;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestOperations;
@@ -13,8 +19,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.handler.AbstractHandlerMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Component
 public class JWTHandlerInterceptor implements HandlerInterceptor {
@@ -30,6 +35,10 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		try {
+            logger.info("POST Handling: " + handler + " path: " + request.getRequestURI());
+            logger.info("POST remote host: " + request.getRemoteHost());
+            logger.info("POST request url: " + request.getRequestURL());
+            logger.info("POST Method: " + request.getMethod());
 			if (handler instanceof HandlerMethod) {
 				String path = request.getRequestURI();
 				if (isProtected(path)) {

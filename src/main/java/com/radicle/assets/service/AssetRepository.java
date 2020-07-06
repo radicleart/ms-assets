@@ -14,5 +14,6 @@ public interface AssetRepository extends MongoRepository<Asset, String> {
 
     public List<Asset> findByOwner(String owner);
     public Optional<Asset> findByAssetHash(String assethash);
+    public Optional<Asset> findByTokenIdAndNetwork(Long tokenId, Integer network);
     public Optional<Asset> findByTokenId(Long tokenId);
 }
