@@ -1,6 +1,8 @@
 package com.radicle.assets.api;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.radicle.assets.api.model.Joke;
 import com.radicle.assets.service.AssetService;
 import com.radicle.assets.service.domain.Asset;
 
@@ -46,7 +49,10 @@ public class BuyNowController {
 	 * @return
 	 */
 	@PostMapping(value = "/buy-now")
-	public Asset buyNow(HttpServletRequest request, @RequestBody Asset purchaseOrder) {
-		return purchaseOrder;
+	public List<Joke> buyNow(HttpServletRequest request, @RequestBody Asset purchaseOrder) {
+		List<Joke> jokes = new ArrayList<Joke>();
+		jokes.add(new Joke("What is black, white and red all over?", "A newspaper"));
+		jokes.add(new Joke("What is brown and sticky", "A stick"));
+		return jokes;
 	}
 }
