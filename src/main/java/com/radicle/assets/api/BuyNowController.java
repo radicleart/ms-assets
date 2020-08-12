@@ -50,6 +50,7 @@ public class BuyNowController {
 	 */
 	@PostMapping(value = "/buy-now")
 	public List<Joke> buyNow(HttpServletRequest request, @RequestBody Asset purchaseOrder) {
+		logger.info("Jokes: must have received a valid LSAT");
 		List<Joke> jokes = new ArrayList<Joke>();
 		jokes.add(new Joke("What is black, white and red all over?", "A newspaper"));
 		jokes.add(new Joke("What is brown and sticky", "A stick"));

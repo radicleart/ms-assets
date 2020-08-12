@@ -86,6 +86,7 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 		ResponseEntity<?> response = null;
 		try {
 			response = restTemplate.exchange(lsatVerify, HttpMethod.GET, requestEntity, Boolean.class);
+			logger.info("Jokes: must have received a valid LSAT");
 		} catch (RestClientException e) {
 			logger.error("Unable to verify token.." + e.getMessage());
 		}
