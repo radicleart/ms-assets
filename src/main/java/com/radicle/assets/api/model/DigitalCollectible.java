@@ -1,5 +1,7 @@
 package com.radicle.assets.api.model;
 
+import java.util.List;
+
 import com.radicle.assets.service.domain.Asset;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +25,7 @@ public class DigitalCollectible {
 	private String image_data;
 	private String external_url;
 	private String youtube_url;
+	List<OSAttribute> attributes;
 
 	public DigitalCollectible() {
 		super();

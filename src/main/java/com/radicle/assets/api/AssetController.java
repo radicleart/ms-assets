@@ -1,5 +1,6 @@
 package com.radicle.assets.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.radicle.assets.api.model.DigitalCollectible;
+import com.radicle.assets.api.model.OSAttribute;
 import com.radicle.assets.service.AssetService;
 import com.radicle.assets.service.domain.Asset;
 
@@ -58,8 +60,17 @@ public class AssetController {
 			return null;
 		} else {
 			DigitalCollectible dc = DigitalCollectible.fromAsset(asset.get());
+			dc = addAttributes(dc, asset.get().getCreated());
 			return dc;
 		}
+	}
+	
+	private DigitalCollectible addAttributes(DigitalCollectible dc, long created) {
+		List<OSAttribute> attributes = new ArrayList<>();
+		attributes.add(new OSAttribute(null, "Version", "One"));
+		attributes.add(new OSAttribute("date", "captured", String.valueOf(created)));
+		dc.setAttributes(attributes);
+		return dc;
 	}
 
 	@GetMapping(value = "/api/v1/loop/{network}/{tokenId}")
@@ -70,6 +81,8 @@ public class AssetController {
 			return null;
 		} else {
 			DigitalCollectible dc = DigitalCollectible.fromAsset(asset.get());
+			dc = addAttributes(dc, asset.get().getCreated());
+			
 			return dc;
 		}
 	}
@@ -87,6 +100,7 @@ public class AssetController {
 	public Asset save(HttpServletRequest request, @RequestBody Asset asset) {
 		setNetwork(request, asset);
 		asset = assetService.save(asset);
+		logger.info("New Asset: " + asset.toString());
 		return asset;
 	}
 
