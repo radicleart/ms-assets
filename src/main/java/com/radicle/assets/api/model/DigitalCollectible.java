@@ -34,7 +34,7 @@ public class DigitalCollectible {
 		DigitalCollectible dc = new DigitalCollectible();
 		dc.setAnimation_url(asset.getAnimationUrl());
 		dc.setBackground_color(asset.getBackgroundColor());
-		dc.setDescription(asset.getDescription());
+		dc.setDescription("Loop #" + asset.getTokenId());
 		dc.setExternal_url(asset.getExternalUrl());
 		dc.setImage(asset.getImageUrl());
 		dc.setImage_data(asset.getImageData());
