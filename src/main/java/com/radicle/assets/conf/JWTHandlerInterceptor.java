@@ -54,8 +54,6 @@ public class JWTHandlerInterceptor implements HandlerInterceptor {
 		            response.setHeader("Content-Type", "application/json");
 		            response.setHeader("Access-Control-Allow-Origin", "*");
 				    return false;
-				} else {
-					logger.info("Authentication not required.");
 				}
 			} else if (handler instanceof AbstractHandlerMapping) {
 				// error occurred..

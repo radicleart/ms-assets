@@ -74,8 +74,22 @@ public class AssetController {
 	}
 
 	@GetMapping(value = "/api/v1/loop/{network}/{tokenId}")
-	public DigitalCollectible fetchV2Loop(HttpServletRequest request, @PathVariable Integer network, @PathVariable Long tokenId) {
+	public DigitalCollectible fetchV1Loop(HttpServletRequest request, @PathVariable Integer network, @PathVariable Long tokenId) {
 		logger.info("Asset requested: " + tokenId);
+		Optional<Asset> asset = assetService.findByTokenIdAndNetwork(tokenId, network);
+		if (asset.isEmpty()) {
+			return null;
+		} else {
+			DigitalCollectible dc = DigitalCollectible.fromAsset(asset.get());
+			dc = addAttributes(dc, asset.get().getCreated());
+			
+			return dc;
+		}
+	}
+
+	@GetMapping(value = "/api/v2/loop/{network}/{tokenId}")
+	public DigitalCollectible fetchV2Loop(HttpServletRequest request, @PathVariable Integer network, @PathVariable Long tokenId) {
+		logger.info("V2 Asset requested: network=" + network + " tokenId=" + tokenId);
 		Optional<Asset> asset = assetService.findByTokenIdAndNetwork(tokenId, network);
 		if (asset.isEmpty()) {
 			return null;
