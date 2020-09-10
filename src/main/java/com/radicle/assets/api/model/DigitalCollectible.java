@@ -1,5 +1,8 @@
 package com.radicle.assets.api.model;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import com.radicle.assets.service.domain.Asset;
@@ -17,6 +20,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class DigitalCollectible {
 
+	private static final String HTTPS_LOOPBOMB_COM_DISPLAY_ASSET = "https://loopbomb.com/display?asset=";
+	private static final String HTTPS_TEST_LOOPBOMB_COM_DISPLAY_ASSET = "https://test.loopbomb.com/display?asset=";
 	private String name;
 	private String description;
 	private String image;
@@ -35,7 +40,18 @@ public class DigitalCollectible {
 		dc.setAnimation_url(asset.getAnimationUrl());
 		dc.setBackground_color(asset.getBackgroundColor());
 		dc.setDescription("Loop #" + asset.getTokenId());
-		dc.setExternal_url(asset.getExternalUrl());
+		String encUrl;
+		try {
+			encUrl = URLEncoder.encode(asset.getExternalUrl(), StandardCharsets.UTF_8.toString());
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			encUrl = asset.getExternalUrl();
+		}
+		if (asset.getNetwork() == 1) {
+			dc.setExternal_url(HTTPS_LOOPBOMB_COM_DISPLAY_ASSET + encUrl);
+		} else {
+			dc.setExternal_url(HTTPS_TEST_LOOPBOMB_COM_DISPLAY_ASSET + encUrl);
+		}
 		dc.setImage(asset.getImageUrl());
 		dc.setImage_data(asset.getImageData());
 		dc.setName(asset.getName());
