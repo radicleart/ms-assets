@@ -47,10 +47,14 @@ public class DigitalCollectible {
 			// TODO Auto-generated catch block
 			encUrl = asset.getExternalUrl();
 		}
-		if (asset.getNetwork() == 1) {
-			dc.setExternal_url(HTTPS_LOOPBOMB_COM_DISPLAY_ASSET + encUrl);
+		if (asset.getExternalUrl() != null && asset.getExternalUrl().indexOf("loopbomb.com/display") > -1) {
+			dc.setExternal_url(asset.getExternalUrl());
 		} else {
-			dc.setExternal_url(HTTPS_TEST_LOOPBOMB_COM_DISPLAY_ASSET + encUrl);
+			if (asset.getNetwork() == 1) {
+				dc.setExternal_url(HTTPS_LOOPBOMB_COM_DISPLAY_ASSET + encUrl);
+			} else {
+				dc.setExternal_url(HTTPS_TEST_LOOPBOMB_COM_DISPLAY_ASSET + encUrl);
+			}
 		}
 		dc.setImage(asset.getImageUrl());
 		dc.setImage_data(asset.getImageData());
