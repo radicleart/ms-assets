@@ -44,6 +44,7 @@ public class AssetServiceImpl implements AssetService {
 			asset.setNetwork(assetFromJson.getNetwork());
 			asset.setTxId(assetFromJson.getTxId());
 			asset.setTokenId(assetFromJson.getTokenId());
+			asset.setNftIndex(assetFromJson.getNftIndex());
 		} else {
 			asset = assetFromJson;
 		}

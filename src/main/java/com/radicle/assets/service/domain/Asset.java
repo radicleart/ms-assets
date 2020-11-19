@@ -25,6 +25,7 @@ public class Asset {
 	private long created;
 	private long updated;
 	private Long tokenId;
+	private Long nftIndex;
 	private String paymentId;
 	private String owner;
 	private String txId;
