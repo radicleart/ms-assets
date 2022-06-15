@@ -1,4 +1,4 @@
-package com.radicle.assets.service.domain;
+package com.radicle.assets.nfts.service.domain;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +18,7 @@ import lombok.ToString;
 @Builder
 @ToString
 @AllArgsConstructor
-@TypeAlias(value = "Asset")
+@TypeAlias(value = "ContractEvent")
 public class Asset {
 
 	@Id private String uuid;

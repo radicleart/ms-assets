@@ -1,4 +1,4 @@
-package com.radicle.assets.service;
+package com.radicle.assets.nfts.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestOperations;
 
-import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.nfts.service.domain.Asset;
 
 @Service
 public class AssetServiceImpl implements AssetService {

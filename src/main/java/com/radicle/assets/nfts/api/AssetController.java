@@ -1,4 +1,4 @@
-package com.radicle.assets.api;
+package com.radicle.assets.nfts.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.radicle.assets.api.model.DigitalCollectible;
-import com.radicle.assets.api.model.OSAttribute;
-import com.radicle.assets.service.AssetService;
-import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.nfts.api.model.DigitalCollectible;
+import com.radicle.assets.nfts.api.model.OSAttribute;
+import com.radicle.assets.nfts.service.AssetService;
+import com.radicle.assets.nfts.service.domain.Asset;
 
 @RestController
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
@@ -31,7 +31,7 @@ public class AssetController {
 
 	@GetMapping(value = "/api/v1/network")
 	public void updateNetwork(HttpServletRequest request) {
-		logger.info("Asset /api/v1/network");
+		logger.info("ContractEvent /api/v1/network");
 		assetService.updateNetwork();
 	}
 
@@ -42,8 +42,8 @@ public class AssetController {
 
 //	@GetMapping(value = "/api/loop/{tokenId}")
 //	public DigitalCollectible fetchLoop(HttpServletRequest request, @PathVariable Long tokenId) {
-//		logger.info("Asset requested: " + tokenId);
-//		Optional<Asset> asset = assetService.findByTokenIdAndNetwork(tokenId, 4);
+//		logger.info("ContractEvent requested: " + tokenId);
+//		Optional<ContractEvent> asset = assetService.findByTokenIdAndNetwork(tokenId, 4);
 //		if (asset.isEmpty()) {
 //			return null;
 //		} else {
@@ -54,7 +54,7 @@ public class AssetController {
 
 	@GetMapping(value = "/api/v1/loop/{tokenId}")
 	public DigitalCollectible fetchV1Loop(HttpServletRequest request, @PathVariable Long tokenId) {
-		logger.info("Asset requested: " + tokenId);
+		logger.info("ContractEvent requested: " + tokenId);
 		Optional<Asset> asset = assetService.findByTokenId(tokenId);
 		if (asset.isEmpty()) {
 			return null;
@@ -75,7 +75,7 @@ public class AssetController {
 
 	@GetMapping(value = "/api/v1/loop/{network}/{tokenId}")
 	public DigitalCollectible fetchV1Loop(HttpServletRequest request, @PathVariable Integer network, @PathVariable Long tokenId) {
-		logger.info("Asset requested: " + tokenId);
+		logger.info("ContractEvent requested: " + tokenId);
 		Optional<Asset> asset = assetService.findByTokenIdAndNetwork(tokenId, network);
 		if (asset.isEmpty()) {
 			return null;
@@ -89,7 +89,7 @@ public class AssetController {
 
 	@GetMapping(value = "/api/v2/loop/{network}/{tokenId}")
 	public DigitalCollectible fetchV2Loop(HttpServletRequest request, @PathVariable Integer network, @PathVariable Long tokenId) {
-		logger.info("V2 Asset requested: network=" + network + " tokenId=" + tokenId);
+		logger.info("V2 ContractEvent requested: network=" + network + " tokenId=" + tokenId);
 		Optional<Asset> asset = assetService.findByTokenIdAndNetwork(tokenId, network);
 		if (asset.isEmpty()) {
 			return null;
@@ -114,7 +114,7 @@ public class AssetController {
 	public Asset save(HttpServletRequest request, @RequestBody Asset asset) {
 		setNetwork(request, asset);
 		asset = assetService.save(asset);
-		logger.info("New Asset: " + asset.toString());
+		logger.info("New ContractEvent: " + asset.toString());
 		return asset;
 	}
 

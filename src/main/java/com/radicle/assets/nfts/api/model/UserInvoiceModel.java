@@ -1,4 +1,4 @@
-package com.radicle.assets.api.model;
+package com.radicle.assets.nfts.api.model;
 
 public class UserInvoiceModel {
 

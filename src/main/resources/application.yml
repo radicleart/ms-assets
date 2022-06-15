@@ -1,12 +1,19 @@
+stacks:
+   dao:
+      deployer: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
 radicle:
-  security:
-    enable-csrf: false
-  lsat:
-    paths: buy-now,purchase
-    lsat-server: http://api.risidio.local/lsat/v1/invoice
-    address-server: http://docker.for.mac.localhost/lsat/v1/bitcoin-address
-    lsat-verify: http://docker.for.mac.localhost/lsat/v1/verify
-  mongo:
+   stax:
+      base-path: http://docker.for.mac.localhost:20443
+      blockchain-api-path: http://docker.for.mac.localhost:3999
+      stacks-path: http://localhost:3999
+   security:
+      enable-csrf: false
+   lsat:
+      paths: buy-now,purchase
+      lsat-server: http://api.risidio.local/lsat/v1/invoice
+      address-server: http://docker.for.mac.localhost/lsat/v1/bitcoin-address
+      lsat-verify: http://docker.for.mac.localhost/lsat/v1/verify
+   mongo:
     mongoIp: mongodb://mongodb
     mongoPort: 27017
     mongoDbName: assets
@@ -21,18 +28,36 @@ application:
 ---
 
 spring:
+    profiles: linux-dev
+application:
+   mongoIp: mongodb://localhost
+radicle:
+   stax:
+      base-path: http://172.17.0.1:20443
+      blockchain-api-path: http://172.17.0.1:3999
+
+---
+
+spring:
     profiles: docker-dev
 application:
 radicle:
-  lsat:
-    lsat-server: https://api.risidio.com/lsat/v1/invoice
-    lsat-verify: https://api.risidio.com/lsat/v1/verify
-    address-server: http://api.risidio.com/lsat/v1/bitcoin-address
+   stax:
+      base-path: http://176.58.109.133:20443
+      blockchain-api-path: http://176.58.109.133:3999
 
 ---
 
 spring:
     profiles: staging
+radicle:
+   stax:
+      base-path: http://176.58.109.133:20443
+      blockchain-api-path: http://176.58.109.133:3999
+      stacks-path: https://stacks-node-api.testnet.stacks.co
+stacks:
+   dao:
+      deployer: ST1NXBK3K5YYMD6FD41MVNP3JS1GABZ8TRVX023PT
 application:
 
 ---
@@ -40,9 +65,11 @@ application:
 spring:
     profiles: production
 application:
+stacks:
+   dao:
+      deployer: SP3BTM84FYABJGJ83519GG5NSV0A6A13D4NHJSS32
 radicle:
-  lsat:
-    lsat-server: https://api.risidio.com/lsat/v1/invoice
-    lsat-verify: https://api.risidio.com/lsat/v1/verify
-    address-server: http://api.risidio.com/lsat/v1/bitcoin-address
-   
+   stax:
+      base-path: http://45.79.131.55:20443
+      blockchain-api-path: http://45.79.131.55:3999
+      stacks-path: https://stacks-node-api.mainnet.stacks.co

@@ -1,4 +1,4 @@
-package com.radicle.assets.api;
+package com.radicle.assets.nfts.api;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.radicle.assets.api.model.Joke;
-import com.radicle.assets.service.AssetService;
-import com.radicle.assets.service.domain.Asset;
+import com.radicle.assets.nfts.api.model.Joke;
+import com.radicle.assets.nfts.service.AssetService;
+import com.radicle.assets.nfts.service.domain.Asset;
 
 @RestController
 @CrossOrigin(origins = { "*" }, maxAge = 6000)

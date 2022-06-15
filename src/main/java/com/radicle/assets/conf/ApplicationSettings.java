@@ -1,4 +1,4 @@
-package com.radicle.assets;
+package com.radicle.assets.conf;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

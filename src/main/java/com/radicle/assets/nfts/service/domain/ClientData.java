@@ -1,4 +1,4 @@
-package com.radicle.assets.service.domain;
+package com.radicle.assets.nfts.service.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
