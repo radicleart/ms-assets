@@ -1,4 +1,4 @@
-package com.radicle.assets.conf;
+package com.radicle.assets.common.conf;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

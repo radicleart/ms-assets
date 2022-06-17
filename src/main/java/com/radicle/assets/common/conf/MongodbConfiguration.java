@@ -1,4 +1,4 @@
-package com.radicle.assets.conf;
+package com.radicle.assets.common.conf;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;

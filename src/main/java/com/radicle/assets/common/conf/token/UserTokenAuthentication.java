@@ -1,4 +1,4 @@
-package com.radicle.assets.conf.token;
+package com.radicle.assets.common.conf.token;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;

@@ -1,4 +1,4 @@
-package com.radicle.assets.conf.token;
+package com.radicle.assets.common.conf.token;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

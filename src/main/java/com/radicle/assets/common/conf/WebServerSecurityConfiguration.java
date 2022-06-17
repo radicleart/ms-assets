@@ -1,4 +1,4 @@
-package com.radicle.assets.conf;
+package com.radicle.assets.common.conf;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

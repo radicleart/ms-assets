@@ -1,4 +1,4 @@
-package com.radicle.assets.conf;
+package com.radicle.assets.common.conf;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

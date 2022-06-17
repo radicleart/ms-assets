@@ -1,4 +1,4 @@
-package com.radicle.assets.conf.token;
+package com.radicle.assets.common.conf.token;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

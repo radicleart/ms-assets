@@ -1,4 +1,4 @@
-package com.radicle.assets.conf;
+package com.radicle.assets.common;
 
 import java.util.Arrays;
 
@@ -13,8 +13,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.radicle.assets.common.ApiHelper;
 
 @SpringBootApplication
 public class AssetsApplication {

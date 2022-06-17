@@ -1,4 +1,4 @@
-package com.radicle.assets.conf;
+package com.radicle.assets.common.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
